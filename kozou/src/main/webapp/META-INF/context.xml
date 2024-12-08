@@ -33,7 +33,7 @@
 		driverClassName="org.postgresql.Driver"
 		url="jdbc:postgresql://localhost:5432/kozou"
 		username="postgres"
-		password="postgres"
+		password="admin"
 		maxActive="20"
 		maxIdel="5"
 		maxWait="5000"
