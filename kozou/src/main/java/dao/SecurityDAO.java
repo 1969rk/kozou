@@ -17,32 +17,32 @@ public class SecurityDAO extends DAO {
 		User user = null;
 		
 		try {
-			String sql1 = "SELECT id FROM user_db WHERE login_id = ?";
+			String sql1 = "SELECT * FROM user_db WHERE login_id = ?";
 			PreparedStatement ps1 = con.prepareStatement(sql1);
-			ps1.setString(1,  loginId);
+			ps1.setString(1, loginId);
 			ResultSet rs1 = ps1.executeQuery();
 			
-			rs1.next();
-			int userId = rs1.getInt("id");
-			ps1.close();
+			if (rs1.next()) {
+				int userId = rs1.getInt("id");
+				ps1.close();
 			
-			Hash h = new Hash();
-			String hashWord = h.loginHash(userId, password);
+				Hash h = new Hash();
+				String hashWord = h.loginHash(userId, password);
 			
-			String sql2 = "SELECT * FROM user_db WHERE login_Id = ? AND password = ?;";
-			PreparedStatement ps2 = con.prepareStatement(sql2);
-			ps2.setString(1, loginId);
-			ps2.setString(2, hashWord);
-			ResultSet rs2 = ps2.executeQuery();
+				String sql2 = "SELECT * FROM user_db WHERE login_Id = ? AND password = ?;";
+				PreparedStatement ps2 = con.prepareStatement(sql2);
+				ps2.setString(1, loginId);
+				ps2.setString(2, hashWord);
+				ResultSet rs2 = ps2.executeQuery();
 			
-			while (rs2.next()) {
-				user = new User();
-				user.setUserId(rs2.getInt("id"));
-				user.setUserName(rs2.getString("name"));
+				if (rs2.next()) {
+					user = new User();
+					user.setUserId(rs2.getInt("id"));
+					user.setUserName(rs2.getString("name"));
+				}
+				ps2.close();
 			}
-			ps2.close();
 			con.close();
-			
 			return user;
 			
 		} catch (Exception e) {
@@ -67,7 +67,7 @@ public class SecurityDAO extends DAO {
 	}
 	
 	
-	public void registUser(String userName, String loginId, String password) throws Exception {
+	public int registUser(String userName, String loginId, String password) throws Exception {
 		
 		Connection con = getConnection();
 		
@@ -85,22 +85,20 @@ public class SecurityDAO extends DAO {
 		ps.setString(3, hashedPassword);
 		ps.setString(4, salt);
 		
-//		try {
-			ps.executeUpdate();
+		try {
+			int line = ps.executeUpdate();
 			
 			ps.close();
 			con.close();
-//			return line;
+			return line;
 			
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//			
-//			ps.close();
-//			con.close();
-//			return 0;
-//			
-//		}
+		} catch (Exception e) {
+			
+			ps.close();
+			con.close();
+			return 0;
+			
+		}
 	}
 	
 }

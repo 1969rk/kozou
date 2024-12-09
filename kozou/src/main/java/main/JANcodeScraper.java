@@ -20,7 +20,7 @@ public class JANcodeScraper {
 			Document doc = Jsoup.connect(url).timeout(5000).get();
 			
 			Element nameElement = doc.selectFirst("h2");
-			String name = nameElement != null ? nameElement.text() : "商品名不明";
+			String productName = nameElement != null ? nameElement.text() : "商品名不明";
 			
 			String content = "";  
 			Element contentElement = doc.selectFirst("tr:contains(内容量) td");
@@ -44,7 +44,7 @@ public class JANcodeScraper {
 			
 			Product product = new Product();
 			product.setJanCode(janCode);
-			product.setName(name);
+			product.setProductName(productName);
 			product.setAmount(contents[0]);
 			product.setUnit(contents[1]);
 			product.setGenre(genre);

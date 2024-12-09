@@ -28,15 +28,15 @@ public class RegistUserAction extends Action {
 		if (p.matcher(password).matches()) {
 			
 			SecurityDAO dao = new SecurityDAO();
-			dao.registUser(userName, loginId, password);
+			int line = dao.registUser(userName, loginId, password);
 			
-//			if (line == 1) {
+			if (line == 1) {
 				return "admin-menu.jsp";
-//			
-//			} else {
-//				return "regist-error2.jsp";
-//			
-//			}
+			
+			} else {
+				return "regist-error2.jsp";
+			
+			}
 		} else {
 			return "regist-error3.jsp";
 		

@@ -14,7 +14,7 @@ public class ScrapeAction extends Action {
 		
 		if (janCode == null || janCode.isEmpty()) {
 			request.setAttribute("error", "JANコードを入力してください。");
-			return "input.jsp";
+			return "search.jsp";
 		}
 		
 		JANcodeScraper scraper = new JANcodeScraper();
@@ -26,6 +26,6 @@ public class ScrapeAction extends Action {
 			request.setAttribute("error", "商品情報を取得できませんでした。");
 		}
 		
-		return "result.jsp";
+		return "input.jsp";
 	}
 }

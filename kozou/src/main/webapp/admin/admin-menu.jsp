@@ -5,11 +5,10 @@
 <h3>管理者メニュー</h3>
 
 <h4>新規ユーザーの追加</h4>
-
-<form action="RegistUser.action" method="get">
-	<p>Name<input type="text" name="userName"></p>
-	<p>user ID<input type="text" name="loginId"></p>
-	<p>password<input type="password" name="password"></p>
+<form action="RegistUser.action" method="post">
+	<p>Name<input type="text" name="userName" required></p>
+	<p>user ID<input type="text" name="loginId" required></p>
+	<p>password<input type="password" name="password" required></p>
 	<input type="submit" value="submit">
 </form>
 

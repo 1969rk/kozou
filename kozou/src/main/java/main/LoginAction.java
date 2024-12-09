@@ -1,3 +1,5 @@
+package main;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -21,7 +23,7 @@ public class LoginAction extends Action {
 		if (user != null) {
 			
 			session.setAttribute("user", user);
-			return "./main/menu.jsp";
+			return "menu.jsp";
 		
 		}
 		

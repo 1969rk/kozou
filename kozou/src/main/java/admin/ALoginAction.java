@@ -7,8 +7,9 @@ import jakarta.servlet.http.HttpSession;
 import bean.User;
 import dao.InitialDAO;
 import dao.SecurityDAO;
+import tool.Action;
 
-public class ALoginAction {
+public class ALoginAction extends Action {
 	
 public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

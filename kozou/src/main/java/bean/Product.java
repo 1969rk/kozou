@@ -3,7 +3,7 @@ package bean;
 public class Product implements java.io.Serializable {
 	
 	private String janCode;
-	private String name;
+	private String productName;
 	private String amount;
 	private String unit;
 	private String genre;
@@ -12,8 +12,8 @@ public class Product implements java.io.Serializable {
 	public String getJanCode() {
 		return janCode;
 	}
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 	public String getAmount() {
 		return amount;
@@ -31,8 +31,8 @@ public class Product implements java.io.Serializable {
 	public void setJanCode(String janCode) {
 		this.janCode = janCode;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public void setAmount(String amount) {
 		this.amount = amount;
