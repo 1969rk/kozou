@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import bean.Product;
 import tool.Action;
+import tool.JANcodeScraper;
 
 public class ScrapeAction extends Action {
 
