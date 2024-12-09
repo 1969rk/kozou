@@ -22,7 +22,7 @@
   
   <resource-ref>
   	<description>PostgreSQL connection resource</description>
-  	<res-ref-name>jdbc/kozou</res-ref-name>
+  	<res-ref-name>jdbc/kozouDataSource</res-ref-name>
   	<res-type>javax.sql.Datasource</res-type>
   	<res-auth>Container</res-auth>
   </resource-ref>

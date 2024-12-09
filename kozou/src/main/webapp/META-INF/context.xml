@@ -27,7 +27,7 @@
     <Manager pathname="SESSIONS.ser" />
     -->
 	<Resource
-		name="jdbc/practice"
+		name="jdbc/kozouDataSource"
 		type="javax.sql.DataSource"
 		auth="Container"
 		driverClassName="org.postgresql.Driver"
