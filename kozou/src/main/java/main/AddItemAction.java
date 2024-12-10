@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import bean.Product;
 import dao.InsertDAO;
 import tool.Action;
 
@@ -15,21 +16,45 @@ public class AddItemAction extends Action {
 		
 		String janCode = request.getParameter("janCode");
 		String productName = request.getParameter("productName");
-		int amount = Integer.parseInt(request.getParameter("amount"));
+		String amt = request.getParameter("amount");
 		String unit = request.getParameter("unit");
 		String manufacturer = request.getParameter("manufacturer");
 		String genre = request.getParameter("genre");
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		
-		InsertDAO dao1 = new InsertDAO();
-		int addUnit = dao1.insertUnit(unit);
-		int addGenre = dao1.insertGenre(genre);
-		int addProduct = dao1.insertProduct(janCode, productName, amount, unit, genre, manufacturer);
-		int addItem = dao1.insertItem(userId, productName, genre);
+		session.setAttribute("userId", userId);
 		
+		InsertDAO dao = new InsertDAO();
+		int addUnit = dao.insertUnit(unit);
+		if (addUnit == 1) {
+			session.setAttribute("message1", "新しい単位を追加しました。");
+		}
 		
+		int addGenre = dao.insertGenre(genre);
+		if (addGenre == 1) {
+			session.setAttribute("message2", "新しい分類を追加しました。");
+		}
 		
-		return null;
+		if (amt.isEmpty()) {
+			amt = "0";
+		}
+		float amount = Float.parseFloat(amt);	
+		int addProduct = dao.insertProduct(janCode, productName, amount, unit, genre, manufacturer);
+		if (addProduct == 1) {
+			session.setAttribute("message3", "新しい商品を追加しました。");
+		}
+		
+		int addItem = dao.insertItem(userId, janCode, genre);
+		if (addItem == 1) {
+			Product product = new Product();
+			product.setProductName(productName);
+			product.setGenre(genre);
+			session.setAttribute("product", product);
+			return "add-item-confirm.jsp";
+		} else {
+			session.setAttribute("message4", "商品の追加に失敗しました。");
+			return "add-item-confirm.jsp";
+		}
 		
 	}
 }

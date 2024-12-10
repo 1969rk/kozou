@@ -14,10 +14,14 @@ public class SelectDAO extends DAO {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, unit);
 		ResultSet rs = ps.executeQuery();
-		rs.next();
-		int unitId = rs.getInt("id");
 		
-		ps.close();
+		int unitId = 1;
+		
+		if (rs.next()) {
+			unitId = rs.getInt("id");
+			ps.close();
+		}
+		
 		con.close();		
 		return unitId;
 	}
@@ -31,10 +35,14 @@ public class SelectDAO extends DAO {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, genre);
 		ResultSet rs = ps.executeQuery();
-		rs.next();
-		int genreId = rs.getInt("id");
 		
-		ps.close();
+		int genreId = 1;
+		
+		if (rs.next()) {
+			genreId = rs.getInt("id");			
+			ps.close();
+		}
+		
 		con.close();
 		return genreId;
 	}
@@ -47,10 +55,14 @@ public class SelectDAO extends DAO {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, janCode);
 		ResultSet rs = ps.executeQuery();
-		rs.next();
-		int productId = rs.getInt("id");
 		
-		ps.close();
+		int productId = 1;
+		
+		if (rs.next()) {
+			productId = rs.getInt("id");
+			ps.close();
+		}
+		
 		con.close();
 		return productId;
 	}

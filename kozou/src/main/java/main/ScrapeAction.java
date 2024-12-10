@@ -17,7 +17,7 @@ public class ScrapeAction extends Action {
 		String janCode = request.getParameter("janCode");
 		String userId = request.getParameter("userId");
 		
-		if (janCode == null || janCode.isEmpty()) {
+		if (janCode.isEmpty()) {
 			request.setAttribute("error", "JANコードを入力してください。");
 			return "search.jsp";
 		}
@@ -32,6 +32,6 @@ public class ScrapeAction extends Action {
 			session.setAttribute("error", "商品情報を取得できませんでした。");
 		}
 		
-		return "input.jsp";
+		return "add-item.jsp";
 	}
 }

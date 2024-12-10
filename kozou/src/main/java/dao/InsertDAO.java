@@ -10,9 +10,11 @@ public class InsertDAO extends DAO {
 		
 		Connection con = getConnection();
 		
-		String sql = "INSERT INTO unit_db (unit) VALUES (?);";
+		String sql = "INSERT INTO unit_db (unit) SELECT ? WHERE NOT EXISTS "
+				+ "(SELECT unit FROM unit_db WHERE unit = ?);";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, unit);
+		ps.setString(2, unit);
 		
 		try {
 			int n = ps.executeUpdate();
@@ -33,9 +35,11 @@ public class InsertDAO extends DAO {
 		
 		Connection con = getConnection();
 		
-		String sql = "INSERT INTO genre_db (genre) VALUES (?);";
+		String sql = "INSERT INTO genre_db (genre) SELECT ? WHERE NOT EXISTS "
+				+ "(SELECT genre FROM genre_db WHERE genre = ?);";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, genre);
+		ps.setString(2, genre);
 		
 		try {
 			int n = ps.executeUpdate();
@@ -53,31 +57,40 @@ public class InsertDAO extends DAO {
 	
 	
 	public int insertProduct(
-			String janCode, String name, int amount, String unit, String genre, String manufacturer
+			String janCode, String name, float amount, String unit, String genre, String manufacturer
 			) throws Exception {
 		
 		Connection con = getConnection();
 		
 		SelectDAO dao = new SelectDAO();
 		int unitId = dao.toUnitId(unit);
-			
 		int genreId = dao.toGenreId(genre);
 		
 		String sql = "INSERT INTO product_db (jan_code, name, amount, unit_id, genre_id, manufacturer) "
-				+ "VALUES (?, ?, ?, ?, ?, ?);";
+				+ "SELECT ?, ?, ?, ?, ?, ? WHERE NOT EXISTS "
+				+ "(SELECT jan_code FROM product_db WHERE jan_code = ?);";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, janCode);
 		ps.setString(2, name);
-		ps.setInt(3, amount);
+		ps.setFloat(3, amount);
 		ps.setInt(4, unitId);
 		ps.setInt(5, genreId);
 		ps.setString(6, manufacturer);
-		int n = ps.executeUpdate();
+		ps.setString(7, janCode);
 		
-		ps.close();
-		con.close();
-		return n;
+		try {
+			int n = ps.executeUpdate();
+		
+			ps.close();
+			con.close();
+			return n;
+		} catch (SQLException e) {
+			ps.close();
+			con.close();
+			return 0;
+		}
 	}
+	
 	
 	public int insertItem(int userId, String janCode, String genre) throws Exception {
 		

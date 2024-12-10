@@ -3,19 +3,21 @@
 <%@ include file="../header.html" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<h1>商品情報</h1>
+<h3>商品情報を確認し、修正あるいは空欄を追加してください。</h3>
 <form action="AddItem.action">
     <p>JAN code: <input type="text" name="janCode" value="${product.janCode}"></p>
     <p>商品名: <input type="text" name="productName" value="${product.productName}"></p>
-    <p>容量: <input type="text" name="amount" value="${product.amount}">${product.unit}</p>
-    <input type="hidden" name="unit" value="${product.unit}"> 
+    <p>容量: <input type="text" name="amount" value="${product.amount}"></p>
+    <p>(数字のみを入力してください。単位をここに入力しないでください。)</p>
+    <p>単位: <input type="text" name="unit" value="${product.unit}"></p> 
+    <p>(ml, L, g, kgのように入力してください)</p>
     <p>メーカー: <input type="text" name="manufacturer" value="${product.manufacturer}"></p>
     <p>分類: <input type="text" name="genre" value="${product.genre}"></p>
     <input type="hidden" name="userId" value="${userId}">
     <input type="submit" value="submit">
 </form>
 <c:if test="${empty product}">
-	<p>商品情報の一部あるいはすべてを入手できませんでした。</p>
+	<p>${error}</p>
 </c:if> 
 <a href="menu.jsp">戻る</a>
 
