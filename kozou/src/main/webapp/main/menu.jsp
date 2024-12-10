@@ -14,7 +14,7 @@
 	<input type="submit" value="discard item">
 </form>
 
-<input type="button" value="logout" onClick="location.href='Logout.action'">
+<input type="button" value="logout" onClick="location.href='./main/Logout.action'">
 
 
 <a href="../index.jsp">Topへ</a>

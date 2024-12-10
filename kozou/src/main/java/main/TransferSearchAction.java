@@ -12,7 +12,8 @@ public class TransferSearchAction extends Action {
 		
 		HttpSession session = request.getSession();
 		
-		int userId = Integer.parseInt(request.getParameter("userId"));
+		String userId = request.getParameter("userId");
+		
 		session.setAttribute("userId", userId);
 		
 		return "search.jsp";

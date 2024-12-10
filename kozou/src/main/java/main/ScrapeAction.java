@@ -2,6 +2,7 @@ package main;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import bean.Product;
 import tool.Action;
@@ -11,7 +12,10 @@ public class ScrapeAction extends Action {
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		HttpSession session = request.getSession();
+		
 		String janCode = request.getParameter("janCode");
+		String userId = request.getParameter("userId");
 		
 		if (janCode == null || janCode.isEmpty()) {
 			request.setAttribute("error", "JANコードを入力してください。");
@@ -22,9 +26,10 @@ public class ScrapeAction extends Action {
 		Product product = scraper.scrapeProductInfo(janCode);
 		
 		if (product != null) {
-			request.setAttribute("product", product);
+			session.setAttribute("userId", userId);
+			session.setAttribute("product", product);
 		} else {
-			request.setAttribute("error", "商品情報を取得できませんでした。");
+			session.setAttribute("error", "商品情報を取得できませんでした。");
 		}
 		
 		return "input.jsp";

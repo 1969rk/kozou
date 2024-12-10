@@ -10,12 +10,19 @@ public class ALogoutAction extends Action {
 	
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		
-		if (session.getAttribute("user") != null) {
+		if (session != null && session.getAttribute("user") != null) {
 			
 			session.invalidate();
-			return "../main/index.jsp";			
+			
+			response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+			response.setHeader("Pragma", "no-cache");
+			response.setDateHeader("Expires", 0);
+			
+			response.sendRedirect(request.getContextPath());
+			
+			return null;			
 		}
 		
 		return "logout-error.jsp";

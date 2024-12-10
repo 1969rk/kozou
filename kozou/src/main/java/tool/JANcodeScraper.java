@@ -22,12 +22,17 @@ public class JANcodeScraper {
 			Element nameElement = doc.selectFirst("h2");
 			String productName = nameElement != null ? nameElement.text() : "商品名不明";
 			
-			String content = "";  
-			Element contentElement = doc.selectFirst("tr:contains(内容量) td");
-			if (contentElement != null) {
-				content = contentElement.text();
+			String[] contents = separateAmtUnit(productName);
+			
+			if (contents != null) {
+				
+				String content = "";
+				Element contentElement = doc.selectFirst("tr:contains(容量) td");
+				if (contentElement != null) {
+					content = contentElement.text();
+				}
+				contents = separateAmtUnit(content);				
 			}
-			String[] contents = separateAmtUnit(content);
 			
 			Elements genreElements = doc.select("tr:contains(商品ジャンル) td a");
 			String genre = "ジャンル不明";
@@ -35,8 +40,12 @@ public class JANcodeScraper {
 				genre = genreElements.get(0).text();
 			} else if (genreElements.size() == 2) {
 				genre = genreElements.get(1).text();
-			} else if (genreElements.size() >= 3) {
+			} else if (genreElements.size() == 3) {
 				genre = genreElements.get(2).text();
+			} else if (genreElements.size() == 4) {
+				genre = genreElements.get(3).text();
+			} else if (genreElements.size() == 5) {
+				genre = genreElements.get(4).text();
 			}
 			
 			Element manufacturerElement = doc.selectFirst("tr:contains(会社名) td a");
@@ -67,6 +76,6 @@ public class JANcodeScraper {
 			String unit = matcher.group(3);
 			return new String[]{amount, unit};
 		}
-		return new String[]{"情報なし", ""};
+		return new String[]{null, null};
 	}
 }

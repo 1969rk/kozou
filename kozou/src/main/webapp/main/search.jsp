@@ -4,9 +4,9 @@
 
     <h1>JANコードで商品情報を検索</h1>
     <form action="Scrape.action" method="post">
-        <p>JANコード: <input type="text" name="janCode" required></p>
+        <p>JANコード: <input type="text" name="janCode"></p>
         <input type="hidden" name="userId" value="${userId}">
-        <button type="submit">検索</button>
+        <input type="submit" value="search">
     </form>
 </body>
 
