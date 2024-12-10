@@ -69,7 +69,7 @@ public class JANcodeScraper {
 	
 	private static String[] separateAmtUnit(String text) {
 		
-		Pattern pattern = Pattern.compile("(\\d+(\\.\\d+)?\\s?)(ml|g|L|kg)");
+		Pattern pattern = Pattern.compile("(\\d+(\\.\\d+)?\\s?)(ml|g|mL|L|kg)");
 		Matcher matcher = pattern.matcher(text);
 		if (matcher.find()) {
 			String amount = matcher.group(1).trim();

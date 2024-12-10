@@ -11,11 +11,12 @@ public class GetDataDAO extends DAO {
 		
 		Connection con = getConnection();
 		
-		String sql = "SELECT COUNT() FROM stock_db "
+		String sql = "SELECT genre_db.genre AS genre, SUM(stock_db.stock) FROM stock_db "
 				+ "JOIN user_db ON user_db.id = stock_db.user_id "
 				+ "JOIN genre_db ON genre_db.id = stock_db.genre_id "
 				+ "JOIN product_db ON product_db.id = stock_db.product_id "
-				+ "WHERE stock_db.user_id = ? GROUP BY ";
+				+ "WHERE stock_db.user_id = ? GROUP BY stock_db.genre_id"
+				+ "ORDER BY genre;)";
 		
 		
 		
