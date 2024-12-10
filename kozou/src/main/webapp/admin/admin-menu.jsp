@@ -12,6 +12,6 @@
 	<input type="submit" value="submit">
 </form>
 
-<a href="../index.jsp">Topへ</a>
+<input type="button" value="logout" onClick="location.href='ALogout.action'">
 
 <%@ include file="../footer.html" %>

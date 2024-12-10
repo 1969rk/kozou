@@ -29,7 +29,7 @@ public class SecurityDAO extends DAO {
 				Hash h = new Hash();
 				String hashWord = h.loginHash(userId, password);
 			
-				String sql2 = "SELECT * FROM user_db WHERE login_Id = ? AND password = ?;";
+				String sql2 = "SELECT * FROM user_db WHERE login_id = ? AND password = ?;";
 				PreparedStatement ps2 = con.prepareStatement(sql2);
 				ps2.setString(1, loginId);
 				ps2.setString(2, hashWord);
