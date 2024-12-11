@@ -7,20 +7,32 @@
 
 <form action="TransferSearch.action" method="post">
 	<input type='hidden' name="userId" value="${user.userId}"> 
-	<input type="submit" value="追加">
+	<input type="submit" value="商品検索&追加">
 </form>
 
-<section>
+<table>
+	<thead>
+		<tr>
+			<th scope="col">カテゴリー</th>
+			<th scope="col">数量</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
 	<c:forEach var="gc" items="${genreCount}">
-		<form action="TransferList.action" method="post">
-			<p>${gc.genre}: ${gc.stockCount} 本
-			<input type="hidden" name="userId" value="${user.userId}">
-			<input type="hidden" name="genreId" value="${gc.genreId}">
-			<input type="hidden" name="genre" value="${gc.genre}">
-			<input type="submit" value="商品確認&削除"></p>
-		</form>
+		<tr>
+			<td>${gc.genre}</td>
+			<td>${gc.stockCount}</td>
+			<td>
+				<form action="TransferList.action" method="post">
+					<input type="hidden" name="userId" value="${user.userId}">
+					<input type="hidden" name="genreId" value="${gc.genreId}">
+					<input type="hidden" name="genre" value="${gc.genre}">
+					<input type="submit" value="商品確認&削除">
+				</form>
+			</td>
+		</tr>
 	</c:forEach>
-</section>
+</table>
 
 <input type="button" value="logout" onClick="location.href='Logout.action'">
 

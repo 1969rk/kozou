@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import bean.Product;
+import dao.SelectDAO;
 import tool.Action;
 import tool.JANcodeScraper;
 
@@ -17,13 +18,12 @@ public class ScrapeAction extends Action {
 		String janCode = request.getParameter("janCode");
 		String userId = request.getParameter("userId");
 		
-		if (janCode.isEmpty()) {
-			request.setAttribute("error", "JANコードを入力してください。");
-			return "search.jsp";
+		SelectDAO dao = new SelectDAO();
+		Product product = dao.extractInfoProduct(janCode);
+		if (product.getProductName() == null) {
+			JANcodeScraper scraper = new JANcodeScraper();
+			product = scraper.scrapeProductInfo(janCode);
 		}
-		
-		JANcodeScraper scraper = new JANcodeScraper();
-		Product product = scraper.scrapeProductInfo(janCode);
 		
 		if (product != null) {
 			session.setAttribute("userId", userId);

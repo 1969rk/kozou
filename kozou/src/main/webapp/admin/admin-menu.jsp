@@ -6,9 +6,13 @@
 
 <h4>新規ユーザーの追加</h4>
 <form action="RegistUser.action" method="post">
-	<p>Name<input type="text" name="userName" required></p>
-	<p>user ID<input type="text" name="loginId" required></p>
-	<p>password<input type="password" name="password" required></p>
+	<label for="name">Name</label>
+	<input type="text" id="name" name="userName" required><br>
+	<label for="loginId">Login ID</label>
+	<input type="text" id="loginId" name="loginId" required><br>
+	<p>（半角アルファベット大文字、小文字、数字を含め、8-16文字で設定してください。</p>
+	<label for="password">Password</label>
+	<input type="password" id="password" name="password" required><br>
 	<input type="submit" value="submit">
 </form>
 

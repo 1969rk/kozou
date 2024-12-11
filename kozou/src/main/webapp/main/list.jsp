@@ -6,16 +6,27 @@
 
 <h3>${genre}の在庫状況です。</h3>
 
-<section>
+<table>
+	<thead>
+		<tr>
+			<th scope="col">商品名</th>
+			<th scope="col">登録日</th>
+			<th scope="col"></th>
+		</tr>
 	<c:forEach var="item" items="${stock}">
-		<form action="RemoveItem.action">
-			<p>${item.productName} / ${fn:substring(item.addTime, 0, 10)} 登録
-			<input type="hidden" name="stockId" value="${item.stockId}">
-			<input type="hidden" name="userId" value="${userId}">
-			<input type="submit" value="削除"></p>
-		</form>
+		<tr>
+			<td>${item.productName}</td>
+			<td>${fn:substring(item.addTime, 0, 10)}</td>
+			<td>
+				<form action="RemoveItem.action">
+					<input type="hidden" name="stockId" value="${item.stockId}">
+					<input type="hidden" name="userId" value="${userId}">
+					<input type="submit" value="削除">
+				</form>
+			</td>
+		</tr>
 	</c:forEach>
-</section>
+</table>
 
 <form action="UpdateData.action">
 	<input type="hidden" name="userId" value="${userId}">

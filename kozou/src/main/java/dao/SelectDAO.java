@@ -4,9 +4,45 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import bean.Product;
 import bean.Stock;
 
 public class SelectDAO extends DAO {
+	
+	public Product extractInfoProduct(String janCode) throws Exception {
+		
+		Connection con = getConnection();
+		
+		Product product = new Product();
+		
+		try {
+			String sql = "SELECT name, amount, unit_db.unit AS unit, genre_db.genre AS genre, manufacturer "
+					+ "FROM product_db JOIN unit_db ON unit_db.id = product_db.unit_id "
+					+ "JOIN genre_db ON genre_db.id = product_db.genre_id WHERE jan_code = ?;";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, janCode);
+			ResultSet rs = ps.executeQuery();		
+			
+			if (rs.next()) {
+				product.setJanCode(janCode);
+				product.setProductName(rs.getString("name"));
+				product.setAmount(rs.getString("amount"));
+				product.setUnit(rs.getString("unit"));
+				product.setGenre(rs.getString("genre"));
+				product.setManufacturer(rs.getString("manufacturer"));
+				ps.close();
+			}
+			
+			con.close();
+			return product;
+			
+		} catch (Exception e) {
+			con.close();
+			return product;
+		}
+	}
+	
 	
 	public int toUnitId(String unit) throws Exception {
 		

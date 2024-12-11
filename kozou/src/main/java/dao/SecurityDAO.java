@@ -46,6 +46,7 @@ public class SecurityDAO extends DAO {
 			return user;
 			
 		} catch (Exception e) {
+			con.close();
 			return user;
 		}
 	}
