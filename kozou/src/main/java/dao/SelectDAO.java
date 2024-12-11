@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import bean.Stock;
+
 public class SelectDAO extends DAO {
 	
 	public int toUnitId(String unit) throws Exception {
@@ -47,6 +49,7 @@ public class SelectDAO extends DAO {
 		return genreId;
 	}
 	
+	
 	public int toProductId(String janCode) throws Exception {
 		
 		Connection con = getConnection();
@@ -68,8 +71,41 @@ public class SelectDAO extends DAO {
 	}
 	
 	
+	public Stock extracIdsFromStock(int stockId) throws Exception {
+		
+		Connection con = getConnection();
+		
+		String sql = "SELECT * FROM stock_db WHERE id = ?;";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, stockId);
+		ResultSet rs = ps.executeQuery();
+		
+		rs.next();
+		Stock stock = new Stock();
+		stock.setUserId(rs.getInt("user_id"));
+		stock.setGenreId(rs.getInt("genre_id"));
+		
+		ps.close();
+		con.close();
+		return stock;
+	}
 	
 	
-	
+	public String convertGenre(int genreId) throws Exception {
+		
+		Connection con = getConnection();
+		
+		String sql = "SELECT genre FROM genre_db WHERE id = ?;";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, genreId);
+		ResultSet rs = ps.executeQuery();
+		
+		rs.next();
+		String genre = rs.getString("genre");
+		
+		ps.close();
+		con.close();
+		return genre;
+	}
 
 }

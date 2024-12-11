@@ -14,7 +14,7 @@ ${message4}
 </div>
 
 <form action="UpdateData.action" method="post" id="submit">
-	<input type="hidden" name="userId" value="${userId}>
+	<input type="hidden" name="userId" value="${userId}">
 	<input type="submit" value="戻る">
 </form>
 

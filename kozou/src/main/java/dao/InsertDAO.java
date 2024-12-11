@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class InsertDAO extends DAO {
 	
-	public int insertUnit(String unit) throws Exception {
+	public void insertUnit(String unit) throws Exception {
 		
 		Connection con = getConnection();
 		
@@ -17,16 +17,14 @@ public class InsertDAO extends DAO {
 		ps.setString(2, unit);
 		
 		try {
-			int n = ps.executeUpdate();
+			ps.executeUpdate();
 			
 			ps.close();
 			con.close();
-			return n;
 			
 		} catch (SQLException e) {
 			ps.close();
 			con.close();
-			return 0;
 		}
 	}
 

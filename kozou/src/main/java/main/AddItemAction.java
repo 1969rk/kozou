@@ -25,10 +25,7 @@ public class AddItemAction extends Action {
 		session.setAttribute("userId", userId);
 		
 		InsertDAO dao = new InsertDAO();
-		int addUnit = dao.insertUnit(unit);
-		if (addUnit == 1) {
-			session.setAttribute("message1", "新しい単位を追加しました。");
-		}
+		dao.insertUnit(unit);
 		
 		int addGenre = dao.insertGenre(genre);
 		if (addGenre == 1) {
