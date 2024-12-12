@@ -6,16 +6,19 @@
 
 <h4>新規ユーザーの追加</h4>
 <form action="RegistUser.action" method="post">
-	<label for="name">Name</label>
-	<input type="text" id="name" name="userName" required><br>
-	<label for="loginId">Login ID</label>
-	<input type="text" id="loginId" name="loginId" required><br>
-	<p>（半角アルファベット大文字、小文字、数字を含め、8-16文字で設定してください。</p>
-	<label for="password">Password</label>
-	<input type="password" id="password" name="password" required><br>
-	<input type="submit" value="submit">
+	<div class="aMenu">
+		<label for="name">Name</label>
+		<input class="box" type="text" id="name" name="userName" required>
+		<label for="loginId">Login ID</label>
+		<input class="box" type="text" id="loginId" name="loginId" required>
+		<label for="password">Password</label>
+		<input class="box" type="password" id="password" name="password" required><br>
+	</div>
+	<p class="caution">パスワードは半角アルファベット大小文字、数字を必ず含めて、8-16文字で設定してください。</p>
+	<input class="button" type="submit" value="submit">
+	<input class="submit" type="button" value="logout" onClick="location.href='ALogout.action'">
 </form>
 
-<input type="button" value="logout" onClick="location.href='ALogout.action'">
 
 <%@ include file="../footer.html" %>
+

@@ -25,6 +25,6 @@ public class ALogoutAction extends Action {
 			return null;			
 		}
 		
-		return "logout-error.jsp";
+		return "admin-logout-error.jsp";
 	}
 }

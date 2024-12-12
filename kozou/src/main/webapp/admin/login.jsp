@@ -7,9 +7,13 @@
 <h3>管理者ページ</h3>
 
 <form action="ALogin.action" method="post">
-	<p>user ID<input type="text" name="loginId"></p>
-	<p>password<input type="password" name="password"></p>
-	<input type="submit" value="login">
+	<div class="boxes">
+		<label for="loginId">ID</label>
+		<input class="box" id="loginId" type="text" name="loginId">
+		<label for="password">password</label>
+		<input class="box" id="password" type="password" name="password">
+	</div>
+	<input class="submit" type="submit" value="login">
 </form>
 
 <a href="../index.jsp">Topへ</a>
