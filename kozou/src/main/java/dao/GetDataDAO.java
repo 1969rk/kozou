@@ -48,7 +48,7 @@ public class GetDataDAO extends DAO {
 		
 		Connection con = getConnection();
 		
-		String sql = "SELECT stock_db.id AS id, product_db.name AS product_name, stock, add_at "
+		String sql = "SELECT stock_db.id AS id, product_id, product_db.name AS product_name, stock, add_at "
 				+ "FROM stock_db JOIN product_db ON product_db.id = stock_db.product_id "
 				+ "WHERE user_id = ? AND stock_db.genre_id = ? AND stock = 1;";
 		
@@ -62,6 +62,7 @@ public class GetDataDAO extends DAO {
 		while (rs.next()) {
 			Stock item = new Stock();
 			item.setStockId(rs.getInt("id"));
+			item.setProductId(rs.getInt("product_id"));
 			item.setProductName(rs.getString("product_name"));
 			item.setStockBoolean(rs.getInt("stock"));
 			item.setAddTime(rs.getString("add_at"));

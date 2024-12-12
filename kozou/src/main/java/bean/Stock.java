@@ -4,6 +4,7 @@ public class Stock implements java.io.Serializable {
 	
 	private int stockId;
 	private int userId;
+	private int productId;
 	private String productName;
 	private int genreId;
 	private int stockBoolean;
@@ -14,6 +15,9 @@ public class Stock implements java.io.Serializable {
 	}
 	public int getUserId() {
 		return userId;
+	}
+	public int getProductId() {
+		return productId;
 	}
 	public String getProductName() {
 		return productName;
@@ -33,6 +37,9 @@ public class Stock implements java.io.Serializable {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;

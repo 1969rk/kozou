@@ -12,6 +12,7 @@
 			<th scope="col">商品名</th>
 			<th scope="col">登録日</th>
 			<th scope="col"></th>
+			<th scope="col"></th>
 		</tr>
 	<c:forEach var="item" items="${stock}">
 		<tr>
@@ -20,8 +21,14 @@
 			<td>
 				<form action="RemoveItem.action">
 					<input type="hidden" name="stockId" value="${item.stockId}">
+					<input class="toDetail" type="submit" value="削除">
+				</form>
+			</td>
+			<td>
+				<form action="EditItem.action">
+					<input type="hidden" name="productId" value="${item.productId}">
 					<input type="hidden" name="userId" value="${userId}">
-					<input type="submit" value="削除">
+					<input class="toEdit" type="submit" value="編集">
 				</form>
 			</td>
 		</tr>

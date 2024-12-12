@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.html" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <h3>情報を確認してください。</h3>
-<p class="caution">初めて登録する商品はこのページで修正できます。</p>
+<p class="caution">このページで修正できます。</p>
 
-<form action="AddItem.action">
+<form action="UpdateItem.action" method="post">
     <div class="addItem">
 	    <label for="janCode">JANコード</label>
 	    <input class="box" id="janCode" type="text" name="janCode" value="${product.janCode}" readonly>
@@ -24,9 +23,6 @@
     <input type="hidden" name="userId" value="${userId}">
     <input class="button" type="submit" value="submit">
 </form>
-<c:if test="${empty product}">
-	<p>${error}</p>
-</c:if> 
 
 <a href="menu.jsp">戻る</a>
 

@@ -27,7 +27,7 @@
 					<input type="hidden" name="userId" value="${user.userId}">
 					<input type="hidden" name="genreId" value="${gc.genreId}">
 					<input type="hidden" name="genre" value="${gc.genre}">
-					<input type="submit" value="商品確認&削除">
+					<input class="toDetail" type="submit" value="詳細">
 				</form>
 			</td>
 		</tr>

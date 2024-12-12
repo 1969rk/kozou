@@ -85,28 +85,52 @@ table tr:last-child td {
     border-bottom: none;
 }
 
-table input[type="submit"] {
-    width: 100px;
-    height: 25px;
+.toDetail {
+    width: 60px;
+    height: 30px;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 1.0rem;
     font-weight: 400;
     box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
     transition: all 0.3s ease;
 }
 
-table input[type="submit"]:hover {
+.toDetail:hover {
     background-color: #0056b3;
     box-shadow: 0 6px 12px rgba(0, 123, 255, 0.6);
     transform: translateY(-3px);
 }
 
-table input[type="submit"]:active {
+.toDetail:active {
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.toEdit {
+    width: 60px;
+    height: 30px;
+    background-color: rgba(255, 123, 255);    
+	color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.0rem;
+    font-weight: 400;
+    box-shadow: 0 4px 6px rgba(255, 123, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.toEdit:hover {
+    background-color: rgb(199, 69, 211);
+    box-shadow: 0 6px 12px rgba(199, 69, 211, 0.4);
+    transform: translateY(-3px);
+}
+
+.toEdit:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(199, 69, 211, 0.3);
 }
 
 label {

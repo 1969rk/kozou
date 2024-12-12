@@ -44,6 +44,41 @@ public class SelectDAO extends DAO {
 	}
 	
 	
+	public Product extractInfoProduct2(int productId) throws Exception {
+		
+		Connection con = getConnection();
+		
+		Product product = new Product();
+		
+		try {
+			String sql = "SELECT jan_code, name, amount, unit_db.unit AS unit, genre_db.genre AS genre, manufacturer "
+					+ "FROM product_db JOIN unit_db ON unit_db.id = product_db.unit_id "
+					+ "JOIN genre_db ON genre_db.id = product_db.genre_id WHERE product_db.id = ?;";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, productId);
+			ResultSet rs = ps.executeQuery();		
+			
+			if (rs.next()) {
+				product.setJanCode(rs.getString("jan_code"));
+				product.setProductName(rs.getString("name"));
+				product.setAmount(rs.getString("amount"));
+				product.setUnit(rs.getString("unit"));
+				product.setGenre(rs.getString("genre"));
+				product.setManufacturer(rs.getString("manufacturer"));
+				ps.close();
+			}
+			
+			con.close();
+			return product;
+			
+		} catch (Exception e) {
+			con.close();
+			return product;
+		}
+	}
+	
+	
 	public int toUnitId(String unit) throws Exception {
 		
 		Connection con = getConnection();

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.html" %>
 
-<h3>次の商品を追加しました。</h3>
+<h3>${message2}</h3>
 
 <div class="confItem">
 	<p>分類</p>
@@ -12,9 +12,6 @@
 </div>
 <div>
 ${message1}
-${message2}
-${message3}
-${message4}
 </div>
 
 <form action="UpdateData.action" method="post" id="submit">
