@@ -3,11 +3,11 @@
 <%@ include file="../header.html" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<h3>${user.userName}さんの調味料・日用品在庫状況</h3>
+<h3>${user.userName}さんの在庫状況</h3>
 
 <form action="TransferSearch.action" method="post">
 	<input type='hidden' name="userId" value="${user.userId}"> 
-	<input type="submit" value="商品検索&追加">
+	<input class="button" type="submit" value="商品検索&追加">
 </form>
 
 <table>
@@ -34,6 +34,6 @@
 	</c:forEach>
 </table>
 
-<input type="button" value="logout" onClick="location.href='Logout.action'">
+<input class="button" type="button" value="logout" onClick="location.href='Logout.action'">
 
 <%@ include file="../footer.html" %>

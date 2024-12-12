@@ -4,8 +4,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <h3>次の商品を追加しました。</h3>
-<p>分類: ${product.genre}</p>
-<p>商品名: ${product.productName}</p>
+
+<div class="confItem">
+	<p>分類</p>
+	<p>${product.genre}</p>
+	<p>商品名
+	<p>${product.productName}</p>
+</div>
 <div>
 ${message1}
 ${message2}
@@ -15,7 +20,7 @@ ${message4}
 
 <form action="UpdateData.action" method="post" id="submit">
 	<input type="hidden" name="userId" value="${userId}">
-	<input type="submit" value="戻る">
+	<input class="button" type="submit" value="戻る">
 </form>
 
 <script type="text/javascript">

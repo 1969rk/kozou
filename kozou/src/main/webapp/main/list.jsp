@@ -30,7 +30,7 @@
 
 <form action="UpdateData.action">
 	<input type="hidden" name="userId" value="${userId}">
-	<input type="submit" value="戻る">
+	<input class="button" type="submit" value="戻る">
 </form>
 
 <%@ include file="../footer.html" %>
