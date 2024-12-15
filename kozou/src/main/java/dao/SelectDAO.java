@@ -148,7 +148,8 @@ public class SelectDAO extends DAO {
 		
 		Connection con = getConnection();
 		
-		String sql = "SELECT * FROM stock_db WHERE id = ?;";
+		String sql = "SELECT stock_db.user_id AS user_id, product_db.genre_id AS genre_id FROM stock_db "
+				+ "JOIN product_db ON product_db.id = stock_db.product_id WHERE stock_db.id = ?;";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, stockId);
 		ResultSet rs = ps.executeQuery();

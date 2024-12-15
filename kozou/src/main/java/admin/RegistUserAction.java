@@ -18,10 +18,6 @@ public class RegistUserAction extends Action {
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 		
-		if (userName.equals("") || loginId.equals("") || password.equals("")) {
-			return "regist-error.jsp";
-		}
-		
 		String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$";
 		Pattern p = Pattern.compile(regex);
 		
@@ -34,11 +30,11 @@ public class RegistUserAction extends Action {
 				return "admin-menu.jsp";
 			
 			} else {
-				return "regist-error2.jsp";
+				return "regist-error1.jsp";
 			
 			}
 		} else {
-			return "regist-error3.jsp";
+			return "regist-error2.jsp";
 		
 		}
 	}

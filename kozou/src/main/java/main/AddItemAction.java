@@ -27,10 +27,7 @@ public class AddItemAction extends Action {
 		InsertDAO dao = new InsertDAO();
 		dao.insertUnit(unit);
 		
-		int addGenre = dao.insertGenre(genre);
-		if (addGenre == 1) {
-			session.setAttribute("message2", "新しい分類を追加しました。");
-		}
+		dao.insertGenre(genre);
 		
 		if (amt.isEmpty()) {
 			amt = "0";
@@ -38,7 +35,10 @@ public class AddItemAction extends Action {
 		float amount = Float.parseFloat(amt);	
 		int addProduct = dao.insertProduct(janCode, productName, amount, unit, genre, manufacturer);
 		if (addProduct == 1) {
-			session.setAttribute("message3", "新しい商品を追加しました。");
+			session.setAttribute("message1", "新しい商品を追加しました。");
+		} else {
+			session.setAttribute("message1", "この商品の登録に失敗しました。");
+			return "add-item-confirm.jsp";
 		}
 		
 		int addItem = dao.insertItem(userId, janCode);
@@ -49,7 +49,7 @@ public class AddItemAction extends Action {
 			session.setAttribute("product", product);
 			return "add-item-confirm.jsp";
 		} else {
-			session.setAttribute("message4", "商品の追加に失敗しました。");
+			session.setAttribute("message1", "商品の追加に失敗しました。");
 			return "add-item-confirm.jsp";
 		}
 		
