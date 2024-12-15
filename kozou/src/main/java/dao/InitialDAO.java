@@ -15,8 +15,7 @@ public class InitialDAO extends DAO {
 		
 		cs.executeUpdate("CREATE TABLE IF NOT EXISTS public.stock_db "
 				+ "(id serial, user_id integer NOT NULL, product_id integer NOT NULL, "
-				+ "genre_id integer NOT NULL, stock integer DEFAULT 1, "
-				+ "add_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP, "
+				+ "stock integer DEFAULT 1, add_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP, "
 				+ "PRIMARY KEY (id));");
 		cs.executeUpdate("CREATE TABLE IF NOT EXISTS public.user_db "
 				+ "(id serial, name character varying(32) NOT NULL, "

@@ -90,20 +90,18 @@ public class InsertDAO extends DAO {
 	}
 	
 	
-	public int insertItem(int userId, String janCode, String genre) throws Exception {
+	public int insertItem(int userId, String janCode) throws Exception {
 		
 		Connection con = getConnection();
 				
 		SelectDAO dao = new SelectDAO();
 		int productId = dao.toProductId(janCode);
-		int genreId = dao.toGenreId(genre);
 		
-		String sql = "INSERT INTO stock_db (user_id, product_id, genre_id) "
-				+ "VALUES (?, ?, ?);";
+		String sql = "INSERT INTO stock_db (user_id, product_id) "
+				+ "VALUES (?, ?);";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, userId);
 		ps.setInt(2, productId);
-		ps.setInt(3, genreId);
 		int n = ps.executeUpdate();
 		
 		ps.close();

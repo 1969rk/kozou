@@ -41,7 +41,7 @@ public class AddItemAction extends Action {
 			session.setAttribute("message3", "新しい商品を追加しました。");
 		}
 		
-		int addItem = dao.insertItem(userId, janCode, genre);
+		int addItem = dao.insertItem(userId, janCode);
 		if (addItem == 1) {
 			Product product = new Product();
 			product.setProductName(productName);

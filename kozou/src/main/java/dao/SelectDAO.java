@@ -9,6 +9,7 @@ import bean.Stock;
 
 public class SelectDAO extends DAO {
 	
+	/* Product data will be obtained from janCode */
 	public Product extractInfoProduct(String janCode) throws Exception {
 		
 		Connection con = getConnection();
@@ -43,7 +44,7 @@ public class SelectDAO extends DAO {
 		}
 	}
 	
-	
+	/* Product data will be obtained from productId */ 
 	public Product extractInfoProduct2(int productId) throws Exception {
 		
 		Connection con = getConnection();
@@ -141,7 +142,8 @@ public class SelectDAO extends DAO {
 		return productId;
 	}
 	
-	
+// should be update
+	/*     */
 	public Stock extracIdsFromStock(int stockId) throws Exception {
 		
 		Connection con = getConnection();
