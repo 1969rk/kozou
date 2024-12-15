@@ -2,16 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.html" %>
 
-<h3>${message2}</h3>
+<h3>${message1}</h3>
 
 <div class="confItem">
 	<p>分類</p>
 	<p>${product.genre}</p>
 	<p>商品名
 	<p>${product.productName}</p>
-</div>
-<div>
-${message1}
 </div>
 
 <form action="UpdateData.action" method="post" id="submit">

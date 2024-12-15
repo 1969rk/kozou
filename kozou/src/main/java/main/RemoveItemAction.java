@@ -25,8 +25,6 @@ public class RemoveItemAction extends Action {
 		int userId = itemIds.getUserId();
 		int genreId = itemIds.getGenreId();
 		
-		String genre = dao1.convertGenre(genreId);
-		
 		UpdateDAO dao2 = new UpdateDAO();
 		dao2.removeItem(stockId);
 		
@@ -34,7 +32,6 @@ public class RemoveItemAction extends Action {
 		List<Stock> items = dao3.makeItemList(userId, genreId); 
 		
 		session.setAttribute("userId", userId);
-		session.setAttribute("genre", genre);
 		session.setAttribute("stock", items);
 		
 		return "list.jsp";
