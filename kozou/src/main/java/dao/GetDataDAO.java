@@ -10,15 +10,15 @@ import bean.GenreCount;
 import bean.Stock;
 
 public class GetDataDAO extends DAO {
-	
+// should be update	
 	public List<GenreCount> genreCount(int userId) throws Exception {
 		
 		Connection con = getConnection();
 		
 		String sql = "SELECT genre_db.id AS id, genre_db.genre AS genre, SUM(stock_db.stock) AS stock_count "
 				+ "FROM stock_db JOIN user_db ON user_db.id = stock_db.user_id "
-				+ "JOIN genre_db ON genre_db.id = stock_db.genre_id "
 				+ "JOIN product_db ON product_db.id = stock_db.product_id "
+				+ "JOIN genre_db ON genre_db.id = product_db.genre_id "
 				+ "WHERE stock_db.user_id = ? AND stock_db.stock = 1 "
 				+ "GROUP BY genre_db.genre, genre_db.id "
 				+ "ORDER BY genre_db.id;";
@@ -43,14 +43,14 @@ public class GetDataDAO extends DAO {
 		return gcs;
 	}
 	
-	
+// should be update	
 	public List<Stock> makeItemList(int userId, int genreId) throws Exception {
 		
 		Connection con = getConnection();
 		
 		String sql = "SELECT stock_db.id AS id, product_id, product_db.name AS product_name, stock, add_at "
 				+ "FROM stock_db JOIN product_db ON product_db.id = stock_db.product_id "
-				+ "WHERE user_id = ? AND stock_db.genre_id = ? AND stock = 1;";
+				+ "WHERE user_id = ? AND product_db.genre_id = ? AND stock = 1;";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, userId);

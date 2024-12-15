@@ -30,9 +30,6 @@ public class UpdateItemAction extends Action {
 		dao1.insertUnit(unit);
 		
 		int addGenre = dao1.insertGenre(genre);
-		if (addGenre == 1) {
-			session.setAttribute("message1", "新しい分類を追加しました。");
-		}
 		
 		if (amt.isEmpty()) {
 			amt = "0";
@@ -47,8 +44,8 @@ public class UpdateItemAction extends Action {
 			Product updatedProduct = dao3.extractInfoProduct(janCode);
 			
 			session.setAttribute("product", updatedProduct);
-			session.setAttribute("message2", "商品情報を更新しました。");
-			return "add-item-confirm.jsp";
+			session.setAttribute("message1", "商品情報を更新しました。");
+			return "edit-item-confirm.jsp";
 			
 		} else {
 			Product originalProduct = new Product();
@@ -56,7 +53,7 @@ public class UpdateItemAction extends Action {
 			originalProduct.setGenre(genre);
 			
 			session.setAttribute("product", originalProduct);
-			session.setAttribute("message2", "商品情報の更新に失敗しました。");
+			session.setAttribute("message1", "商品情報の更新に失敗しました。");
 			return "add-item-confirm.jsp";
 		}
 	}		

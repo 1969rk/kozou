@@ -15,8 +15,7 @@ public class InitialDAO extends DAO {
 		
 		cs.executeUpdate("CREATE TABLE IF NOT EXISTS public.stock_db "
 				+ "(id serial, user_id integer NOT NULL, product_id integer NOT NULL, "
-				+ "genre_id integer NOT NULL, stock integer DEFAULT 1, "
-				+ "add_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP, "
+				+ "stock integer DEFAULT 1, add_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP, "
 				+ "PRIMARY KEY (id));");
 		cs.executeUpdate("CREATE TABLE IF NOT EXISTS public.user_db "
 				+ "(id serial, name character varying(32) NOT NULL, "
@@ -24,7 +23,7 @@ public class InitialDAO extends DAO {
 				+ "password character varying(128) NOT NULL, "
 				+ "salt character varying(64) NOT NULL, PRIMARY KEY (id));");
 		cs.executeUpdate("CREATE TABLE IF NOT EXISTS public.product_db "
-				+ "(id serial, jan_code character varying(16) UNIQUE, name character varying(32) NOT NULL,"
+				+ "(id serial, jan_code character varying(16) UNIQUE, name character varying(128) NOT NULL,"
 				+ " amount real, unit_id integer, genre_id integer NOT NULL, "
 				+ "manufacturer character varying(32), PRIMARY KEY (id));");
 		cs.executeUpdate("CREATE TABLE IF NOT EXISTS public.genre_db (id serial, "

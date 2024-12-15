@@ -10,12 +10,7 @@
 	<p>商品名
 	<p>${product.productName}</p>
 </div>
-<div>
-${message1}
-${message2}
-${message3}
-${message4}
-</div>
+<p class="caution">${message1}</p>
 
 <form action="UpdateData.action" method="post" id="submit">
 	<input type="hidden" name="userId" value="${userId}">
