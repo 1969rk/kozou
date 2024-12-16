@@ -36,9 +36,6 @@ public class AddItemAction extends Action {
 		int addProduct = dao.insertProduct(janCode, productName, amount, unit, genre, manufacturer);
 		if (addProduct == 1) {
 			session.setAttribute("message1", "新しい商品を追加しました。");
-		} else {
-			session.setAttribute("message1", "この商品の登録に失敗しました。");
-			return "add-item-confirm.jsp";
 		}
 		
 		int addItem = dao.insertItem(userId, janCode);
@@ -49,7 +46,7 @@ public class AddItemAction extends Action {
 			session.setAttribute("product", product);
 			return "add-item-confirm.jsp";
 		} else {
-			session.setAttribute("message1", "商品の追加に失敗しました。");
+			session.setAttribute("message2", "商品の追加に失敗しました。");
 			return "add-item-confirm.jsp";
 		}
 		

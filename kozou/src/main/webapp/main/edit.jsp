@@ -21,7 +21,7 @@
 	    <input class="box" id="genre"type="text" name="genre" value="${product.genre}" required>
     </div>
     <input type="hidden" name="userId" value="${userId}">
-    <input class="button" type="submit" value="submit">
+    <input class="button" type="submit" value="更新">
 </form>
 
 <a href="menu.jsp">戻る</a>

@@ -9,7 +9,7 @@
 	    <input class="box" id="janCode" type="text" name="janCode" oninput="numberOnly(this)" required>
     </div>
     <input type="hidden" name="userId" value="${userId}">
-    <input class="button" type="submit" value="search">
+    <input class="button" type="submit" value="検索">
 </form>
 
 <a href="menu.jsp">戻る</a>

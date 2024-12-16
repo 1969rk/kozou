@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <h3>情報を確認してください。</h3>
-<p class="caution">初めて登録する商品はこのページで修正できます。</p>
+<p class="caution">初めて登録する商品は入力内容を修正できます。</p>
 
 <form action="AddItem.action">
     <div class="addItem">
@@ -22,7 +22,7 @@
 	    <input class="box" id="genre"type="text" name="genre" value="${product.genre}" required>
     </div>
     <input type="hidden" name="userId" value="${userId}">
-    <input class="button" type="submit" value="submit">
+    <input class="button" type="submit" value="追加・登録">
 </form>
 <c:if test="${empty product}">
 	<p>${error}</p>
